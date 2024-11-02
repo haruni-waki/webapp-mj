@@ -4,10 +4,13 @@ body{
 
 header{
     background-color: black;
+    
 }
 
 main{
     background-color: rgb(57, 21, 90);
+    height: 500px;
+    width: 700px;
 }
 
 h1{

@@ -10,6 +10,21 @@
     <header>
         <h1>title</h1>
     </header>
-    <main>main</main>
+    <main><canvas id="canvas" width="700px" height="500px"></canvas></main>
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        ctx.fillStyle="white";
+        canvas.addEventListener('click', (e) => {
+            var rect=e.target.getBoundingClientRect();
+        ctx.beginPath();
+        ctx.arc(e.clientX-rect.left, e.clientY-rect.top,10, 0, 2*Math.PI);
+        ctx.closePath();
+        ctx.fill();
+        });
+
+        
+        
+    </script>
 </body>
 </html>
