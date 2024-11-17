@@ -5,6 +5,22 @@ let isDragging = false;
 let shapes = [];
 let dragIndex = null;
 
+
+function Grid() {
+    for (let index = 0; index < 10; index++) {
+        ctx.beginPath(); // 新しいパスを開始
+        ctx.moveTo(0,50+index*50); // ペンを (30, 50) へ移動
+        ctx.lineTo(500, 50+index*50); // 直線を (150, 100) へ描く
+        ctx.stroke(); // パスを描画
+        ctx.beginPath(); // 新しいパスを開始
+        ctx.moveTo(50+index*50,0); // ペンを (30, 50) へ移動
+        ctx.lineTo(50+index*50, 500); // 直線を (150, 100) へ描く
+        ctx.stroke(); // パスを描画
+    }
+    
+}
+
+
 function DrawCircle(x, y, r, c) {
     ctx.fillStyle = c;
 
@@ -16,6 +32,7 @@ function DrawCircle(x, y, r, c) {
 
 function allCircle() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    Grid();
     shapes.forEach((shape) =>
         DrawCircle(
             shape.x,
@@ -25,6 +42,7 @@ function allCircle() {
         )
     )
 }
+
 
 canvas.addEventListener('click', onMouseClick);
 canvas.addEventListener('mousedown', onMouseDown);
@@ -39,11 +57,16 @@ function onMouseClick(e) {
     if (isClickOnShape(x, y)) return;
     console.log("check")
 
+    
+    x = Math.floor(x/50) * 50 +25
+    y = Math.floor(y/50) * 50 +25 
+    
+    
     var newShape = {
         x: x,
         y: y,
-        radius: 10,
-        color: "white"
+        radius: 25,
+        color: "black"
     }
     shapes.push(newShape);
     allCircle()
@@ -94,3 +117,6 @@ function onMouseUp(e) {
     isDragging = false;
     dragIndex = null;
 }
+
+
+Grid();
