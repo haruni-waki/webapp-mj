@@ -45,6 +45,7 @@ function allCircle() {
 
 
 canvas.addEventListener('click', onMouseClick);
+canvas.addEventListener('contextmenu', onContextClick);
 canvas.addEventListener('mousedown', onMouseDown);
 canvas.addEventListener('mousemove', onMouseMove);
 canvas.addEventListener('mouseup', onMouseUp);
@@ -55,6 +56,7 @@ function onMouseClick(e) {
     var y = e.clientY - rect.top;
 
     if (isClickOnShape(x, y)) return;
+    if (dragIndex !== null) return;
     console.log("check")
 
     
@@ -74,8 +76,8 @@ function onMouseClick(e) {
 
 function isClickOnShape(x, y) {
     return shapes.some(shape => {
-        const dist = Math.sqrt((x - shape.x) ** 2 + (y - shape.y) ** 2);
-        return dist <= shape.radius;
+        return x >= shape.x -25 && x <= shape.x + 25 &&
+        y >= shape.y-25&& y <= shape.y + 25;
     })
 }
 
@@ -114,9 +116,24 @@ function onMouseMove(e) {
 }
 
 function onMouseUp(e) {
+    
+    var rect = e.target.getBoundingClientRect();
+    var x = e.clientX - rect.left;
+    var y = e.clientY - rect.top;
+    x = Math.floor(x/50) * 50 +25
+    y = Math.floor(y/50) * 50 +25 
+    shapes[dragIndex].x = x;
+    shapes[dragIndex].y = y;
+    allCircle();
+    console.log("mouseup")
     isDragging = false;
     dragIndex = null;
 }
+
+function onContextClick(){
+    console.log("context")
+}
+
 
 
 Grid();
