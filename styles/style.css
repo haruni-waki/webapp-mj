@@ -16,3 +16,32 @@ main{
 h1{
     color: #ffffff;
 }
+
+#menu {
+    background-color: #982e98;
+    color: #ffffff;
+    width: 300px;
+    height: 40px;
+    text-align: center;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+input[type="color"] {
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    display: inline-block;
+    margin-right: 18px;
+    border: 1px solid #f3eded;
+    border-radius: 50%;
+  }
+
+  input[type="color"]::-webkit-color-swatch,
+  input[type="color"]::-webkit-color-swatch-wrapper {
+    border: none;
+    padding: 0;
+    border-radius: 50%;
+  }
