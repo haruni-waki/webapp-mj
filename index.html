@@ -1,17 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="styles/style.css" rel="stylesheet"/>
     <title>Document</title>
 </head>
-<body>
+<body onContextmenu="return false;">
     <header>
         <h1>title</h1>
     </header>
+   
     <div id="menu">
-        <input type="color" name="colorpalette" list="color" value="#002b55"></input>
+        <input id="inputColor" type="color" name="colorpalette" list="color" value="#002b55"></input>
         <datalist id="color">
         <option value="#002b55"></option>
         <option value="#982e98"></option>
@@ -20,6 +21,7 @@
         <button><img src="drive_file_rename_outline_24dp_FFFF.png" alt=""></button>
         <button><img src="delete_outline_24dp_FFFF.png" alt=""></button>
         <input type="text"></input>
+        
     </div>
     <main><canvas id="canvas" width="500px" height="500px"></canvas></main>
     <script src="script.js"></script>

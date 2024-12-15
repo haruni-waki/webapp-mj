@@ -1,4 +1,7 @@
 
+const menu = document.getElementById("menu");
+const inputColor = document.getElementById("inputColor");
+
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 let isDragging = false;
@@ -51,6 +54,7 @@ canvas.addEventListener('contextmenu', onContextClick);
 canvas.addEventListener('mousedown', onMouseDown);
 canvas.addEventListener('mousemove', onMouseMove);
 canvas.addEventListener('mouseup', onMouseUp);
+canvas.addEventListener('contextmenu', rightClick);
 
 function onMouseClick(e) {
     var rect = e.target.getBoundingClientRect();
@@ -63,14 +67,15 @@ function onMouseClick(e) {
 
     
     x = Math.floor(x/50) * 50 +25
-    y = Math.floor(y/50) * 50 +25 
-    
+    y = Math.floor(y/50) * 50 +25
+
+    color=inputColor.value;
     
     var newShape = {
         x: x,
         y: y,
         radius: 25,
-        color: "black"
+        color: color
     }
     shapes.push(newShape);
     allCircle()
@@ -136,7 +141,9 @@ function onContextClick(){
     console.log("context")
 }
 
-
+function rightClick(){
+    menu.style.display="block";
+}
 
 Grid();
 
