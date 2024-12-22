@@ -1,6 +1,8 @@
 
 const menu = document.getElementById("menu");
 const inputColor = document.getElementById("inputColor");
+const remove = document.getElementById("delete");
+
 
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
@@ -71,6 +73,7 @@ function onMouseClick(e) {
 
     color=inputColor.value;
     
+
     var newShape = {
         x: x,
         y: y,
@@ -143,6 +146,14 @@ function onContextClick(){
 
 function rightClick(){
     menu.style.display="block";
+}
+
+function removeGeometry(){
+    var x = e.clientX - rect.left;
+    var y = e.clientY - rect.top;
+    shapes.splice(x,y);
+    allCircle()
+
 }
 
 Grid();

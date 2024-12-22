@@ -48,6 +48,9 @@ h1{
     transition-duration: 0.3s;
 }
 
+#delete{
+    
+}
 
 input[type="color"] {
     width: 32px;
