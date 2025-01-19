@@ -126,7 +126,8 @@ function onMouseMove(e) {
 }
 
 function onMouseUp(e) {
-    
+    if (!isDragging || dragIndex === null) return;
+
     var rect = e.target.getBoundingClientRect();
     var x = e.clientX - rect.left;
     var y = e.clientY - rect.top;
@@ -144,7 +145,14 @@ function onContextClick(){
     console.log("context")
 }
 
-function rightClick(){
+function rightClick(e){
+    // var rect = e.target.getBoundingClientRect();
+    // var x = e.clientX - rect.left;
+    // var y = e.clientY - rect.top;
+
+    menu.style.position="absolute";
+    menu.style.top=x;
+    menu.style.left=y;
     menu.style.display="block";
 }
 
