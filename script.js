@@ -2,14 +2,51 @@
 const menu = document.getElementById("menu");
 const inputColor = document.getElementById("inputColor");
 const remove = document.getElementById("delete");
-
-
+const inputName = document.getElementById("inputName");
+const nameButton = document.getElementById("nameButton")
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 let isDragging = false;
 let shapes = [];
 let dragIndex = null;
+let editShape = null;
 
+canvas.addEventListener('click', onMouseClick);
+// canvas.addEventListener('contextmenu', onContextClick);
+canvas.addEventListener('mousedown', onMouseDown);
+canvas.addEventListener('mousemove', onMouseMove);
+canvas.addEventListener('mouseup', onMouseUp);
+canvas.addEventListener('contextmenu', rightClick);
+inputName.addEventListener("keydown",getInputName);
+nameButton.addEventListener('click', nameButtonClick);
+remove.addEventListener("click",removeShape);
+
+function removeShape(e){
+    console.log("delete")
+    shapes.forEach((shape,index)=>{
+        if(shape===editShape){
+            shapes.splice(index,1)
+            editShape=null
+            menu.style.display="none";
+        }
+    })
+    allCircle()
+}
+
+function nameButtonClick(e){
+    inputName.style.visibility="visible";
+}
+
+function getInputName(e){
+    if (e.key==="Enter"){
+        // const ctx = canvas.getContext('2d');
+        console.log(inputName.value)
+        editShape.name = inputName.value
+        ctx.fillStyle="#ffffff";
+        ctx.font="30px Roboto medium";
+        ctx.fillText(editShape.name,editShape.x,editShape.y);
+    }
+}
 
 function Grid() {
     for (let index = 0; index < 10; index++) {
@@ -48,17 +85,17 @@ function allCircle() {
             shape.color
         )
     )
+    shapes.forEach(function(shape){
+            ctx.fillStyle="#ffffff"
+            ctx.font="30px Roboto medium"
+            ctx.fillText(shape.name,shape.x,shape.y)
+        }
+    )
 }
 
 
-canvas.addEventListener('click', onMouseClick);
-canvas.addEventListener('contextmenu', onContextClick);
-canvas.addEventListener('mousedown', onMouseDown);
-canvas.addEventListener('mousemove', onMouseMove);
-canvas.addEventListener('mouseup', onMouseUp);
-canvas.addEventListener('contextmenu', rightClick);
-
 function onMouseClick(e) {
+    menu.style.display="none";
     var rect = e.target.getBoundingClientRect();
     var x = e.clientX - rect.left;
     var y = e.clientY - rect.top;
@@ -78,7 +115,8 @@ function onMouseClick(e) {
         x: x,
         y: y,
         radius: 25,
-        color: color
+        color: color,
+        name: ""
     }
     shapes.push(newShape);
     allCircle()
@@ -91,7 +129,12 @@ function isClickOnShape(x, y) {
     })
 }
 
-
+function getClickShapePosition(x, y) {
+    return shapes.filter(shape => {
+        return x >= shape.x -25 && x <= shape.x + 25 &&
+        y >= shape.y-25&& y <= shape.y + 25;
+    })
+}
 
 
 function onMouseDown(e) {
@@ -146,14 +189,25 @@ function onContextClick(){
 }
 
 function rightClick(e){
-    // var rect = e.target.getBoundingClientRect();
-    // var x = e.clientX - rect.left;
-    // var y = e.clientY - rect.top;
 
-    menu.style.position="absolute";
-    menu.style.top=x;
-    menu.style.left=y;
-    menu.style.display="block";
+
+    var rect = e.target.getBoundingClientRect();
+    var x = e.clientX - rect.left;
+    var y = e.clientY - rect.top;
+
+    if (isClickOnShape(x, y)){
+        var ShapeObject = getClickShapePosition(x,y)[0];
+        editShape=ShapeObject
+        // x = Math.floor(x/50) * 50 +25
+        // y = Math.floor(y/50) * 50 +25
+        console.log(ShapeObject)
+        x=ShapeObject.x - 140;//menu.clientWidth/2;
+        y=ShapeObject.y 
+        menu.style.position="absolute";
+        menu.style.left= x + "px";
+        menu.style.top= y + "px";
+        menu.style.display="block";
+    } 
 }
 
 function removeGeometry(){
