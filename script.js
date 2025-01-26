@@ -37,6 +37,18 @@ function nameButtonClick(e){
     inputName.style.visibility="visible";
 }
 
+function inputColorClick(e){
+    color=inputColor.value;
+    console.log(color)
+    editShape.color = color;
+    console.log(shapes)
+
+    //型エラー
+    shapes[dragIndex].color = color;
+    allCircle()
+
+}
+
 function getInputName(e){
     if (e.key==="Enter"){
         // const ctx = canvas.getContext('2d');
@@ -45,6 +57,8 @@ function getInputName(e){
         ctx.fillStyle="#ffffff";
         ctx.font="30px Roboto medium";
         ctx.fillText(editShape.name,editShape.x,editShape.y);
+        inputName.style.visibility="hidden";
+        
     }
 }
 
@@ -190,7 +204,7 @@ function onContextClick(){
 
 function rightClick(e){
 
-
+    inputName.style.visibility="hidden";
     var rect = e.target.getBoundingClientRect();
     var x = e.clientX - rect.left;
     var y = e.clientY - rect.top;
@@ -207,6 +221,12 @@ function rightClick(e){
         menu.style.left= x + "px";
         menu.style.top= y + "px";
         menu.style.display="block";
+
+        if (editShape.name){
+            inputName.value=editShape.name;
+        } else {
+            inputName.value="";
+        }
     } 
 }
 
