@@ -1,6 +1,7 @@
 
 const menu = document.getElementById("menu");
 const inputColor = document.getElementById("inputColor");
+const datalistColor = document.getElementById("color");
 const remove = document.getElementById("delete");
 const inputName = document.getElementById("inputName");
 const nameButton = document.getElementById("nameButton")
@@ -39,12 +40,10 @@ function nameButtonClick(e){
 
 function inputColorClick(e){
     color=inputColor.value;
-    console.log(color)
     editShape.color = color;
-    console.log(shapes)
-
-    //型エラー
-    shapes[dragIndex].color = color;
+    child = document.createElement('option');
+    option=datalistColor.appendChild(child);
+    option.setAttribute('value', color);
     allCircle()
 
 }
