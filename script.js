@@ -12,14 +12,26 @@ let shapes = [];
 let dragIndex = null;
 let editShape = null;
 
+// 新しい丸を作るとき
 canvas.addEventListener('click', onMouseClick);
 // canvas.addEventListener('contextmenu', onContextClick);
+
+// 既存の丸を持つとき
 canvas.addEventListener('mousedown', onMouseDown);
+// 既存の丸を動かすとき
 canvas.addEventListener('mousemove', onMouseMove);
+// 既存の丸を置くとき
 canvas.addEventListener('mouseup', onMouseUp);
+// 既存の丸のメニュー出すとき
 canvas.addEventListener('contextmenu', rightClick);
-inputName.addEventListener("keydown",getInputName);
+
+// メニューイベント
+// 名前欄を出す
 nameButton.addEventListener('click', nameButtonClick);
+// 丸の名前をつけるとき
+inputName.addEventListener("keydown",getInputName);
+
+// 丸を消す
 remove.addEventListener("click",removeShape);
 
 function removeShape(e){
@@ -108,7 +120,12 @@ function allCircle() {
 
 
 function onMouseClick(e) {
-    menu.style.display="none";
+    menudisp=menu.style.display
+    if (menudisp=="block"){
+        menu.style.display="none";
+        return
+    }
+    
     var rect = e.target.getBoundingClientRect();
     var x = e.clientX - rect.left;
     var y = e.clientY - rect.top;
@@ -168,6 +185,8 @@ function onMouseDown(e) {
 }
 
 function onMouseMove(e) {
+
+    
     if (!isDragging || dragIndex === null) return;
 
     var rect = e.target.getBoundingClientRect();
@@ -182,15 +201,24 @@ function onMouseMove(e) {
 }
 
 function onMouseUp(e) {
+    
     if (!isDragging || dragIndex === null) return;
 
+    // 丸の移動座標を計算する
     var rect = e.target.getBoundingClientRect();
     var x = e.clientX - rect.left;
     var y = e.clientY - rect.top;
     x = Math.floor(x/50) * 50 +25
-    y = Math.floor(y/50) * 50 +25 
+    y = Math.floor(y/50) * 50 +25
+
+    // 既存の丸があったとき元の位置
+    // if(shapes[dragIndex].X==x;
+
+    // 丸の座標を変更する
     shapes[dragIndex].x = x;
     shapes[dragIndex].y = y;
+
+    // 画面を再描写する
     allCircle();
     console.log("mouseup")
     isDragging = false;
