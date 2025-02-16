@@ -67,7 +67,7 @@ function getInputName(e){
         editShape.name = inputName.value
         ctx.fillStyle="#ffffff";
         ctx.font="30px Roboto medium";
-        ctx.fillText(editShape.name,editShape.x,editShape.y);
+        ctx.fillText(editShape.name,editShape.x-7,editShape.y+9);
         inputName.style.visibility="hidden";
         
     }
@@ -113,7 +113,7 @@ function allCircle() {
     shapes.forEach(function(shape){
             ctx.fillStyle="#ffffff"
             ctx.font="30px Roboto medium"
-            ctx.fillText(shape.name,shape.x,shape.y)
+            ctx.fillText(shape.name,shape.x-7,shape.y+9)
         }
     )
 }
@@ -245,6 +245,13 @@ function rightClick(e){
         x=ShapeObject.x - 140;//menu.clientWidth/2;
         y=ShapeObject.y 
         menu.style.position="absolute";
+        
+        console.log(x);
+        if (x<-70){
+            x=x+80;
+        }else if(x<-50){
+            x=x+40
+        }
         menu.style.left= x + "px";
         menu.style.top= y + "px";
         menu.style.display="block";
