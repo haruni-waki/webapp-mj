@@ -74,19 +74,36 @@ function getInputName(e){
 }
 
 function Grid() {
-    for (let index = 0; index < 10; index++) {
+    // for (let index = 0; index < 2; index++) {
+        
+    //     ctx.beginPath(); // 新しいパスを開始
+    //     ctx.moveTo(0,50+index*50); // ペンを (30, 50) へ移動
+    //     ctx.lineTo(500, 50+index*50); // 直線を (150, 100) へ描く
+    //     ctx.stroke(); // パスを描画
+        
+    //     ctx.beginPath(); // 新しいパスを開始
+    //     ctx.moveTo(50+index*50,0); // ペンを (30, 50) へ移動
+    //     ctx.lineTo(50+index*50, 500); // 直線を (150, 100) へ描く
+    //     ctx.stroke(); // パスを描画
+        
+    // }
+
+    // 横の大きさは10～14マスくらい 
+    // 縦6～10マス
+    for (let index = 0; index < 6; index++) {
         
         ctx.beginPath(); // 新しいパスを開始
         ctx.moveTo(0,50+index*50); // ペンを (30, 50) へ移動
         ctx.lineTo(500, 50+index*50); // 直線を (150, 100) へ描く
         ctx.stroke(); // パスを描画
+    }
+    for (let index = 0; index <7; index++) {   
         ctx.beginPath(); // 新しいパスを開始
         ctx.moveTo(50+index*50,0); // ペンを (30, 50) へ移動
         ctx.lineTo(50+index*50, 500); // 直線を (150, 100) へ描く
         ctx.stroke(); // パスを描画
         
     }
-    
 }
 
 
