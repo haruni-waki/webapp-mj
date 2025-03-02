@@ -88,8 +88,8 @@ function Grid() {
         
     // }
 
-    // 横の大きさは10～14マスくらい 
-    // 縦6～10マス
+    // 横の大きさは10マス 最小５
+    // 縦８マス　最小６
     for (let index = 0; index < 6; index++) {
         
         ctx.beginPath(); // 新しいパスを開始
@@ -99,8 +99,8 @@ function Grid() {
     }
     for (let index = 0; index <7; index++) {   
         ctx.beginPath(); // 新しいパスを開始
-        ctx.moveTo(50+index*50,0); // ペンを (30, 50) へ移動
-        ctx.lineTo(50+index*50, 500); // 直線を (150, 100) へ描く
+        ctx.moveTo(index*50,0); // ペンを (30, 50) へ移動
+        ctx.lineTo(index*50, 500); // 直線を (150, 100) へ描く
         ctx.stroke(); // パスを描画
         
     }
@@ -259,9 +259,9 @@ function rightClick(e){
         // x = Math.floor(x/50) * 50 +25
         // y = Math.floor(y/50) * 50 +25
         console.log(ShapeObject)
-        x=ShapeObject.x - 140;//menu.clientWidth/2;
+        x=ShapeObject.x;//menu.clientWidth/2;
         y=ShapeObject.y 
-        menu.style.position="absolute";
+        // menu.style.position="absolute";
         
         console.log(x);
         if (x<-70){

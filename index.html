@@ -11,24 +11,24 @@
         <h1>choreo vibe</h1>
     </header>
    
-    <div id="menu">
-        <input id="inputColor" onchange="inputColorClick()" type="color" name="colorpalette" list="color" value="#6cd323"></input>
-        <datalist id="color">
-            <option value="#dc143c"></option>
-            <option value="#efa331"></option>
-            <option value="#ffd700"></option>
-            <option value="#6cd323"></option>
-            <option value="#4682b4"></option>
-           
+    <main>
+        <canvas id="canvas" width="300px" height="250px"></canvas>
+
+        <div id="menu">
+            <input id="inputColor" onchange="inputColorClick()" type="color" name="colorpalette" list="color" value="#6cd323"></input>
+            <datalist id="color">
+                <option value="#dc143c"></option>
+                <option value="#efa331"></option>
+                <option value="#ffd700"></option>
+                <option value="#6cd323"></option>
+                <option value="#4682b4"></option>
+            </datalist>
+            <button id="nameButton"><img src="drive_file_rename_outline_24dp_FFFF.png" alt=""></button>
+            <button id="delete"><img src="delete_outline_24dp_FFFF.png" alt=""></button>
             
-            
-        </datalist>
-        <button id="nameButton"><img src="drive_file_rename_outline_24dp_FFFF.png" alt=""></button>
-        <button id="delete"><img src="delete_outline_24dp_FFFF.png" alt=""></button>
-        
-        <input id="inputName" type="text"></input>    
-    </div>
-    <main><canvas id="canvas" width="500px" height="500px"></canvas></main>
+            <input id="inputName" type="text"></input>    
+        </div>
+    </main>
     <script src="script.js"></script>
     
 </body>

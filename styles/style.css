@@ -8,10 +8,17 @@ header{
 }
 
 main{
-    background-color: rgb(246, 246, 246);
-    height: 500px;
-    width: 700px;
+    /* background-color: rgb(0, 0, 0); */
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 
+}
+
+canvas{
+    background-color: #ffffff;
 }
 
 h1{
