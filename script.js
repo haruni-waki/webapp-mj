@@ -23,7 +23,7 @@ canvas.addEventListener('mousemove', onMouseMove);
 // 既存の丸を置くとき
 canvas.addEventListener('mouseup', onMouseUp);
 // 既存の丸のメニュー出すとき
-canvas.addEventListener('contextmenu', rightClick);
+// canvas.addEventListener('contextmenu', rightClick);
 
 // メニューイベント
 // 名前欄を出す
@@ -40,7 +40,7 @@ function removeShape(e){
         if(shape===editShape){
             shapes.splice(index,1)
             editShape=null
-            menu.style.display="none";
+          
         }
     })
     allCircle()
@@ -53,6 +53,7 @@ function nameButtonClick(e){
 function inputColorClick(e){
     color=inputColor.value;
     editShape.color = color;
+    
     child = document.createElement('option');
     option=datalistColor.appendChild(child);
     option.setAttribute('value', color);
@@ -95,6 +96,8 @@ function Grid() {
         ctx.beginPath(); // 新しいパスを開始
         ctx.moveTo(0,50+index*50); // ペンを (30, 50) へ移動
         ctx.lineTo(500, 50+index*50); // 直線を (150, 100) へ描く
+        ctx.lineWidth = 1;
+        ctx.strokeStyle = "black";
         ctx.stroke(); // パスを描画
     }
     for (let index = 0; index <7; index++) {   
@@ -107,13 +110,21 @@ function Grid() {
 }
 
 
-function DrawCircle(x, y, r, c) {
+function DrawCircle(x, y, r, c, isSelected = false) {
     ctx.fillStyle = c;
 
     ctx.beginPath();
     ctx.arc(x, y, r, 0, 2 * Math.PI);
+    if(isSelected){
+        ctx.lineWidth = 10;
+        ctx.strokeStyle = "white";
+        ctx.stroke();
+    }
+
     ctx.closePath();
     ctx.fill();
+
+
 }
 
 function allCircle() {
@@ -124,7 +135,8 @@ function allCircle() {
             shape.x,
             shape.y,
             shape.radius,
-            shape.color
+            shape.color,
+            shape.isSelected
         )
     )
     shapes.forEach(function(shape){
@@ -147,7 +159,13 @@ function onMouseClick(e) {
     var x = e.clientX - rect.left;
     var y = e.clientY - rect.top;
 
-    if (isClickOnShape(x, y)) return;
+    if (isClickOnShape(x, y)){
+        var ShapeObject = getClickShapePosition(x,y)[0];
+        editShape=ShapeObject
+        editShape.isSelected = true
+        inputColor.value=editShape.color
+        return;
+    } 
     if (dragIndex !== null) return;
     console.log("check")
 
@@ -163,8 +181,10 @@ function onMouseClick(e) {
         y: y,
         radius: 25,
         color: color,
-        name: ""
+        name: "",
+        isSelected:false
     }
+    editShape=newShape
     shapes.push(newShape);
     allCircle()
 }
