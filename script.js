@@ -4,13 +4,21 @@ const inputColor = document.getElementById("inputColor");
 const datalistColor = document.getElementById("color");
 const remove = document.getElementById("delete");
 const inputName = document.getElementById("inputName");
-const nameButton = document.getElementById("nameButton")
+const nameButton = document.getElementById("nameButton");
+const row = document.getElementById('row');
+const col = document.getElementById('col');
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 let isDragging = false;
 let shapes = [];
 let dragIndex = null;
 let editShape = null;
+
+let rowSize=7;
+let colSize=6;
+// グリッドの大きさ
+row.addEventListener("change",getGrid);
+col.addEventListener("change",getGrid);
 
 // 新しい丸を作るとき
 canvas.addEventListener('click', onMouseClick);
@@ -91,7 +99,7 @@ function Grid() {
 
     // 横の大きさは10マス 最小５
     // 縦８マス　最小６
-    for (let index = 0; index < 6; index++) {
+    for (let index = 0; index < rowSize; index++) {
         
         ctx.beginPath(); // 新しいパスを開始
         ctx.moveTo(0,50+index*50); // ペンを (30, 50) へ移動
@@ -100,7 +108,7 @@ function Grid() {
         ctx.strokeStyle = "black";
         ctx.stroke(); // パスを描画
     }
-    for (let index = 0; index <7; index++) {   
+    for (let index = 0; index < colSize; index++) {   
         ctx.beginPath(); // 新しいパスを開始
         ctx.moveTo(index*50,0); // ペンを (30, 50) へ移動
         ctx.lineTo(index*50, 500); // 直線を (150, 100) へ描く
@@ -147,6 +155,11 @@ function allCircle() {
     )
 }
 
+
+function getGrid(e){
+    rowSize=row.value;
+    colsize=col.value;
+}
 
 function onMouseClick(e) {
     menudisp=menu.style.display
