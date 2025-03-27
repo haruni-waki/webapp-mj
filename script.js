@@ -7,6 +7,8 @@ const inputName = document.getElementById("inputName");
 const nameButton = document.getElementById("nameButton");
 const row = document.getElementById('row');
 const col = document.getElementById('col');
+const row_num = document.getElementById("row_num");
+const col_num = document.getElementById("col_num");
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 let isDragging = false;
@@ -99,19 +101,19 @@ function Grid() {
 
     // 横の大きさは10マス 最小５
     // 縦８マス　最小６
-    for (let index = 0; index < rowSize; index++) {
+    for (let index = 0; index < colSize; index++) {
         
         ctx.beginPath(); // 新しいパスを開始
         ctx.moveTo(0,50+index*50); // ペンを (30, 50) へ移動
-        ctx.lineTo(500, 50+index*50); // 直線を (150, 100) へ描く
+        ctx.lineTo(rowSize*50, 50+index*50); // 直線を (150, 100) へ描く
         ctx.lineWidth = 1;
         ctx.strokeStyle = "black";
         ctx.stroke(); // パスを描画
     }
-    for (let index = 0; index < colSize; index++) {   
+    for (let index = 0; index < rowSize; index++) {   
         ctx.beginPath(); // 新しいパスを開始
         ctx.moveTo(index*50,0); // ペンを (30, 50) へ移動
-        ctx.lineTo(index*50, 500); // 直線を (150, 100) へ描く
+        ctx.lineTo(index*50, colSize*50); // 直線を (150, 100) へ描く
         ctx.stroke(); // パスを描画
         
     }
@@ -158,7 +160,14 @@ function allCircle() {
 
 function getGrid(e){
     rowSize=row.value;
-    colsize=col.value;
+    colSize=col.value;
+    row_num.textContent=rowSize;
+    col_num.textContent=colSize;
+
+    canvas.width=50*rowSize
+    canvas.height=50*colSize
+
+    allCircle()
 }
 
 function onMouseClick(e) {
