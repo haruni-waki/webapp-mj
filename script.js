@@ -127,7 +127,7 @@ function DrawCircle(x, y, r, c, isSelected = false) {
     ctx.arc(x, y, r, 0, 2 * Math.PI);
     if(isSelected){
         ctx.lineWidth = 10;
-        ctx.strokeStyle = "white";
+        ctx.strokeStyle = "#D9FF52";
         ctx.stroke();
     }
 
@@ -180,11 +180,11 @@ function onMouseClick(e) {
     var rect = e.target.getBoundingClientRect();
     var x = e.clientX - rect.left;
     var y = e.clientY - rect.top;
-
+    
     if (isClickOnShape(x, y)){
-        var ShapeObject = getClickShapePosition(x,y)[0];
-        editShape=ShapeObject
-        editShape.isSelected = true
+        editShape = getClickShapePosition(x,y)[0];
+        selectShape(editShape)
+        allCircle()
         inputColor.value=editShape.color
         return;
     } 
@@ -196,7 +196,6 @@ function onMouseClick(e) {
     y = Math.floor(y/50) * 50 +25
 
     color=inputColor.value;
-    
 
     var newShape = {
         x: x,
@@ -204,11 +203,22 @@ function onMouseClick(e) {
         radius: 25,
         color: color,
         name: "",
-        isSelected:false
+        isSelected:true
     }
+    selectShape(newShape);
+
     editShape=newShape
     shapes.push(newShape);
     allCircle()
+}
+
+function selectShape(shape) {
+    for (let index = 0; index < shapes.length; index++) {
+        const element = shapes[index];
+        element.isSelected=false;
+        
+    }
+    shape.isSelected = true;
 }
 
 function isClickOnShape(x, y) {
@@ -230,7 +240,6 @@ function onMouseDown(e) {
     var rect = e.target.getBoundingClientRect();
     var x = e.clientX - rect.left;
     var y = e.clientY - rect.top;
-
     for (let i = shapes.length - 1; i >= 0; i--) {
         const shape = shapes[i];
         const dist = Math.sqrt((x - shape.x) ** 2 + (y - shape.y) ** 2);
@@ -238,6 +247,7 @@ function onMouseDown(e) {
             isDragging = true;
             console.log("dragg")
             dragIndex = i;
+            selectShape(shape)
             break;
         }
     }
