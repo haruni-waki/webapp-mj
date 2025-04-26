@@ -176,18 +176,30 @@ function onMouseClick(e) {
         menu.style.display="none";
         return
     }
-    
-    var rect = e.target.getBoundingClientRect();
-    var x = e.clientX - rect.left;
-    var y = e.clientY - rect.top;
-    
-    if (isClickOnShape(x, y)){
-        editShape = getClickShapePosition(x,y)[0];
-        selectShape(editShape)
-        allCircle()
-        inputColor.value=editShape.color
-        return;
-    } 
+    // if (isCheckOnShape()){
+        //     shapes.forEach(shape => shape.isSelected = false)
+        //     allCircle()
+        //     return
+        // }  
+        var rect = e.target.getBoundingClientRect();
+        var x = e.clientX - rect.left;
+        var y = e.clientY - rect.top;
+        
+        if (isClickOnShape(x, y)){
+            editShape = getClickShapePosition(x,y)[0];
+            selectShape(editShape)
+            allCircle()
+            inputColor.value=editShape.color
+            return;
+        }
+        else if(isCheckOnShape()){
+            shapes.forEach(shape => shape.isSelected = false)
+            allCircle()
+            return
+        } 
+        
+        console.log(isCheckOnShape())
+        console.log(shapes)
     if (dragIndex !== null) return;
     console.log("check")
 
@@ -226,6 +238,10 @@ function isClickOnShape(x, y) {
         return x >= shape.x -25 && x <= shape.x + 25 &&
         y >= shape.y-25&& y <= shape.y + 25;
     })
+}
+
+function isCheckOnShape(){
+    return shapes.some(shape => shape.isSelected )
 }
 
 function getClickShapePosition(x, y) {
