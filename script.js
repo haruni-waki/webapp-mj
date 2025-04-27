@@ -57,7 +57,17 @@ function removeShape(e){
 }
 
 function nameButtonClick(e){
-    inputName.style.visibility="visible";
+    // inputName.style.visibility="visible";
+    // inputName.style.visibility="hidden";
+    let namebtn=inputName.style.visibility
+    if(namebtn=="visible"){
+        inputName.style.visibility="hidden"
+
+    }
+    else{
+        inputName.style.visibility="visible";
+        inputName.focus()
+    }
 }
 
 function inputColorClick(e){
@@ -76,9 +86,11 @@ function getInputName(e){
         // const ctx = canvas.getContext('2d');
         console.log(inputName.value)
         editShape.name = inputName.value
-        ctx.fillStyle="#ffffff";
-        ctx.font="30px Roboto medium";
-        ctx.fillText(editShape.name,editShape.x-7,editShape.y+9);
+        let headName=(editShape.name.substring(0, 1));
+        inputName.value=""
+        ctx.fillStyle="#000000";
+        ctx.font="20px Roboto medium";
+        ctx.fillText( headName,editShape.x-5,editShape.y+5);
         inputName.style.visibility="hidden";
         
     }
@@ -150,9 +162,10 @@ function allCircle() {
         )
     )
     shapes.forEach(function(shape){
-            ctx.fillStyle="#ffffff"
-            ctx.font="30px Roboto medium"
-            ctx.fillText(shape.name,shape.x-7,shape.y+9)
+            let headName=(shape.name.substring(0, 1));
+            ctx.fillStyle="#000000"
+            ctx.font="20px Roboto medium"
+            ctx.fillText(headName,shape.x-5,shape.y+5)
         }
     )
 }
@@ -194,6 +207,7 @@ function onMouseClick(e) {
         }
         else if(isCheckOnShape()){
             shapes.forEach(shape => shape.isSelected = false)
+            editShape=null
             allCircle()
             return
         } 
@@ -212,7 +226,7 @@ function onMouseClick(e) {
     var newShape = {
         x: x,
         y: y,
-        radius: 25,
+        radius: 15,
         color: color,
         name: "",
         isSelected:true
