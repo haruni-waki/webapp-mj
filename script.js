@@ -262,15 +262,14 @@ function isCheckOnShape(){
 function getClickShapePosition(x, y) {
     return shapes.filter(shape => {
         return x >= shape.x -25 && x <= shape.x + 25 &&
-        y >= shape.y-25&& y <= shape.y + 25;
+        y >= shape.y-25 && y <= shape.y + 25;
     })
 }
 
-function OverlapCircle(x, y,i) {
-    return shapes.some(shape => {
+function OverlapCircle(x, y, dragidx) {
+    return shapes.some((shape, i) => {
         return x >= shape.x -25 && x <= shape.x + 25 &&
-        y >= shape.y-25&& y <= shape.y + 25 && shape.index!=i
-
+        y >= shape.y-25&& y <= shape.y + 25 && dragidx!=i
     })
 }
 
@@ -318,9 +317,9 @@ function onMouseUp(e) {
     var y = e.clientY - rect.top;
     x = Math.floor(x/50) * 50 +25
     y = Math.floor(y/50) * 50 +25
-
+    
     // 既存の丸があったとき元の位置
-    if(OverlapCircle[x,y,dragIndex]){
+    if(OverlapCircle(x,y,dragIndex)){
         alert("重なってるよ")
         return
     };
