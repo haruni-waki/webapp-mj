@@ -90,9 +90,10 @@ function getInputName(e){
         inputName.value=""
         ctx.fillStyle="#000000";
         ctx.font="20px Roboto medium";
-        ctx.fillText( headName,editShape.x-5,editShape.y+5);
+        ctx.textAlign="center";
+        ctx.fillText( headName,editShape.x,editShape.y+7);
         inputName.style.visibility="hidden";
-        
+        allCircle()
     }
 }
 
@@ -165,7 +166,7 @@ function allCircle() {
             let headName=(shape.name.substring(0, 1));
             ctx.fillStyle="#000000"
             ctx.font="20px Roboto medium"
-            ctx.fillText(headName,shape.x-5,shape.y+5)
+            ctx.fillText(headName,shape.x,shape.y+7)
         }
     )
 }
@@ -265,6 +266,14 @@ function getClickShapePosition(x, y) {
     })
 }
 
+function OverlapCircle(x, y,i) {
+    return shapes.some(shape => {
+        return x >= shape.x -25 && x <= shape.x + 25 &&
+        y >= shape.y-25&& y <= shape.y + 25 && shape.index!=i
+
+    })
+}
+
 
 function onMouseDown(e) {
     var rect = e.target.getBoundingClientRect();
@@ -311,8 +320,11 @@ function onMouseUp(e) {
     y = Math.floor(y/50) * 50 +25
 
     // 既存の丸があったとき元の位置
-    // if(shapes[dragIndex].X==x;
-
+    if(OverlapCircle[x,y,dragIndex]){
+        alert("重なってるよ")
+        return
+    };
+    console.log(shapes[dragIndex].x,x)
     // 丸の座標を変更する
     shapes[dragIndex].x = x;
     shapes[dragIndex].y = y;
