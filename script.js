@@ -15,6 +15,8 @@ let isDragging = false;
 let shapes = [];
 let dragIndex = null;
 let editShape = null;
+let beforeX = null;
+let beforeY = null;
 
 let rowSize=7;
 let colSize=6;
@@ -190,17 +192,25 @@ function onMouseClick(e) {
         menu.style.display="none";
         return
     }
-    // if (isCheckOnShape()){
-        //     shapes.forEach(shape => shape.isSelected = false)
-        //     allCircle()
-        //     return
-        // }  
+    if(OverlapCircle(x,y,dragIndex)){
+        return  
+    };
+ 
         var rect = e.target.getBoundingClientRect();
         var x = e.clientX - rect.left;
         var y = e.clientY - rect.top;
         
         if (isClickOnShape(x, y)){
+            
+
             editShape = getClickShapePosition(x,y)[0];
+       
+
+            if (editShape.x != beforeX || editShape.y != beforeY ) {
+                return;
+            }
+
+
             selectShape(editShape)
             allCircle()
             inputColor.value=editShape.color
@@ -285,6 +295,8 @@ function onMouseDown(e) {
             isDragging = true;
             console.log("dragg")
             dragIndex = i;
+            beforeX = shape.x;
+            beforeY = shape.y;
             selectShape(shape)
             break;
         }
@@ -320,9 +332,19 @@ function onMouseUp(e) {
     
     // 既存の丸があったとき元の位置
     if(OverlapCircle(x,y,dragIndex)){
-        alert("重なってるよ")
-        return
+        shapes[dragIndex].x = beforeX;
+        shapes[dragIndex].y = beforeY;
+    
+        console.log("up")
+
+        isDragging = false;
+        dragIndex = null;
+        allCircle();
+        return  
+        
     };
+    
+        
     console.log(shapes[dragIndex].x,x)
     // 丸の座標を変更する
     shapes[dragIndex].x = x;
