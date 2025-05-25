@@ -74,6 +74,40 @@ h1{
     color: #ffffff;
 }
 
+
+.timeline-container{
+    position: relative;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: -3px; /* 縦線の中央に配置するよう調整 */
+    width: 20px; /* 丸の直径 */
+    height: 20px; /* 丸の直径 */
+    border-radius: 50%; /* 丸くする */
+    background: #6cd323; /* 丸の色 */
+    z-index: 2; /* 縦線より前面に */
+  }
+
+.timeline{
+    position: absolute;
+    top: calc(50% - 1px);
+    border: 2px solid #6cd323;
+    width: 100%;
+    z-index: -1;
+}
+
+/* .square{
+    width: 60px;
+  height: 40px;
+  border: 2px solid black;
+  border-radius: 10px;
+  background-color: white;
+  padding: 10px:
+} */
+
 #menu {
     background-color: #6cd323;
     color: #ffffff;
