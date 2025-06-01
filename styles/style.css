@@ -75,38 +75,60 @@ h1{
 }
 
 
-.timeline-container{
+#timeline-container{
     position: relative;
+    display: flex;
+    justify-content:space-evenly;
+    gap: 5px;
 }
 
 .timeline::before {
     content: '';
     position: absolute;
-    top: -8px;
+    top: -3.5px;
     left: -3px; /* 縦線の中央に配置するよう調整 */
-    width: 20px; /* 丸の直径 */
-    height: 20px; /* 丸の直径 */
+    width: 10px; /* 丸の直径 */
+    height: 10px; /* 丸の直径 */
     border-radius: 50%; /* 丸くする */
-    background: #6cd323; /* 丸の色 */
+    background: #b3baaf; /* 丸の色 */
     z-index: 2; /* 縦線より前面に */
   }
+
 
 .timeline{
     position: absolute;
     top: calc(50% - 1px);
-    border: 2px solid #6cd323;
+    border: 2px solid #b3baaf;
     width: 100%;
     z-index: -1;
 }
 
-/* .square{
+
+.timeline::after {
+    content: '';
+    position: absolute;
+    top: -3.5px;
+    right: -3px; /* 縦線の中央に配置するよう調整 */
+    width: 10px; /* 丸の直径 */
+    height: 10px; /* 丸の直径 */
+    border-radius: 50%; /* 丸くする */
+    background: #b3baaf; /* 丸の色 */
+    z-index: 2; /* 縦線より前面に */
+  }
+.square{
     width: 60px;
   height: 40px;
   border: 2px solid black;
   border-radius: 10px;
   background-color: white;
-  padding: 10px:
-} */
+ 
+} 
+
+#save{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
 
 #menu {
     background-color: #6cd323;

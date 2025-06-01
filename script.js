@@ -11,6 +11,7 @@ const row_num = document.getElementById("row_num");
 const col_num = document.getElementById("col_num");
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
+const saveButton = document.getElementById("save");
 let isDragging = false;
 let shapes = [];
 let dragIndex = null;
@@ -403,6 +404,16 @@ function removeGeometry(){
     allCircle()
 
 }
+
+function saveFormation(){
+    let item = document.createElement("div");
+    item.className="square";
+
+    const container = document.getElementById("timeline-container");
+    container.appendChild(item);
+}
+saveButton.addEventListener('click',saveFormation);
+
 
 Grid();
 
