@@ -12,8 +12,10 @@ const col_num = document.getElementById("col_num");
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 const saveButton = document.getElementById("save");
+const saveSquare =document.getElementsByClassName("square")[0];
 let isDragging = false;
 let shapes = [];
+let shapesList = [];
 let dragIndex = null;
 let editShape = null;
 let beforeX = null;
@@ -406,14 +408,30 @@ function removeGeometry(){
 }
 
 function saveFormation(){
-    let item = document.createElement("div");
+    let item = document.createElement("button");
     item.className="square";
-
     const container = document.getElementById("timeline-container");
     container.appendChild(item);
+
+    let count = document.getElementsByClassName("square").length;
+    item.addEventListener('click',() => selectSquare(count));
+    shapesList.push(shapes.concat())
+
 }
+
 saveButton.addEventListener('click',saveFormation);
+
+function selectSquare(number){
+   let  output=document.getElementById("output");
+   output.innerHTML=number;
+   shapes = shapesList[number-1]
+   console.log(shapes,number-1)
+    allCircle()
+}
+saveSquare.addEventListener('click',() => selectSquare(1));
+
+
+
 
 
 Grid();
-
