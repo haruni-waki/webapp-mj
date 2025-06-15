@@ -49,6 +49,10 @@ inputName.addEventListener("keydown",getInputName);
 // 丸を消す
 remove.addEventListener("click",removeShape);
 
+
+// 最初のフォーメーションを追加
+shapesList.push(shapes);
+
 function removeShape(e){
     console.log("delete")
     shapes.forEach((shape,index)=>{
@@ -414,21 +418,33 @@ function saveFormation(){
     container.appendChild(item);
 
     let count = document.getElementsByClassName("square").length;
-    item.addEventListener('click',() => selectSquare(count));
+    item.addEventListener('click',(e) => selectSquare(e,count));
     shapesList.push(shapes.concat())
 
 }
 
 saveButton.addEventListener('click',saveFormation);
 
-function selectSquare(number){
-   let  output=document.getElementById("output");
-   output.innerHTML=number;
-   shapes = shapesList[number-1]
-   console.log(shapes,number-1)
+function selectSquare(e,number){
+    console.log(e.currentTarget);
+    let square = e.currentTarget;
+    let  output=document.getElementById("output");
+    output.innerHTML=number;
+    shapes = shapesList[number-1]
+    console.log(shapes,number-1)
+
+    let allSquare = document.getElementsByClassName("square");
+    for (let i=0;i<allSquare.length;i++ ){
+        allSquare[i].className="square";
+    }
+
+
+    square.classList.add("square-select");
+
+
     allCircle()
 }
-saveSquare.addEventListener('click',() => selectSquare(1));
+saveSquare.addEventListener('click',(e) => selectSquare(e,1));
 
 
 
