@@ -25,19 +25,32 @@
             <button class="square"></button>
         </div>
 
-        <button id="save"></button>
+      
         <div id="menu">
-            <input id="inputColor" onchange="inputColorClick()" type="color" name="colorpalette" list="color" value="#6cd323"></input>
+            <input id="inputColor" onchange="inputColorClick()" type="color" name="colorpalette"  class="tooltip" list="color" value="#6cd323">
+                <span class="tooltip-text">色</span>
+            </input>
             <datalist id="color">
+               
                 <option value="#dc143c"></option>
                 <option value="#efa331"></option>
                 <option value="#ffd700"></option>
                 <option value="#6cd323"></option>
                 <option value="#4682b4"></option>
             </datalist>
-            <button id="nameButton"><img src="drive_file_rename_outline_24dp_FFFF.png" alt=""></button>
-            <button id="delete"><img src="delete_outline_24dp_FFFF.png" alt=""></button>
             
+            <button id="nameButton" class="tooltip">
+                <span class="tooltip-text">名前</span>
+                <img src="drive_file_rename_outline_24dp_FFFF.png" alt="">
+            </button>
+            <button id="delete" class="tooltip">
+                <span class="tooltip-text">削除</span>
+                <img src="delete_outline_24dp_FFFF.png" alt="">
+            </button>
+            <button id="save" class="tooltip">
+                <span class="tooltip-text">保存</span>
+                ＋
+            </button>
             <input id="inputName" type="text"></input>    
         </div>
     </main>

@@ -80,6 +80,9 @@ h1{
     display: flex;
     justify-content:space-evenly;
     gap: 5px;
+    width: 400px;
+    overflow: auto;
+    overflow-y: hidden;
 }
 
 .timeline::before {
@@ -99,7 +102,7 @@ h1{
     position: absolute;
     top: calc(50% - 1px);
     border: 2px solid #b3baaf;
-    width: 100%;
+    width: 385px;
     z-index: -1;
 }
 
@@ -121,16 +124,13 @@ h1{
   border: 2px solid black;
   border-radius: 10px;
   background-color: white;
+  min-width: 60px;
 } 
 .square-select{
   border: 5px solid rgb(198, 235, 88);
 } 
 
-#save{
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-}
+
 
 #menu {
     background-color: #6cd323;
@@ -160,6 +160,12 @@ h1{
     height: 30px;
 }
 
+#save{
+    width: 60px;
+    height: 60px;
+    color: #ffffff;
+}
+
 #menu button:hover{
     background-color: #64b42a;
     transition-duration: 0.2s;
@@ -172,6 +178,44 @@ h1{
 
 #delete{
     
+}
+
+.tooltip {
+  position: relative; /* ツールチップの位置の基準に */
+  cursor: pointer; /* カーソルを当てたときにポインターに */
+}
+
+.tooltip-text {
+  opacity: 0; /* はじめは隠しておく */
+  visibility: hidden; /* はじめは隠しておく */
+  position: absolute; /* 絶対配置 */
+  left: 50%; /* 親に対して中央配置 */
+  transform: translateX(-50%); /* 親に対して中央配置 */
+  top: -35px; /* 親要素下からの位置 */
+  display: inline-block;
+  padding: 5px; /* 余白 */
+  white-space: nowrap; /* テキストを折り返さない */
+  font-size: 0.8rem; /* フォントサイズ */
+  line-height: 1.3; /* 行間 */
+  background: #e9dbbf; /* 背景色 */
+  color: #4f4f4f; /* 文字色 */
+  border-radius: 3px; /* 角丸 */
+  transition: 0.3s ease-in; /* アニメーション */
+}
+
+.tooltip-text:before {
+	content: '';
+	position: absolute;
+	top: 25px;
+	left: 50%;
+	margin-left: -7px;
+	border: 7px solid transparent;
+	border-top: 7px solid #e9dbbf;
+}
+
+.tooltip:hover .tooltip-text {
+  opacity: 1;
+  visibility: visible;
 }
 
 input[type="color"] {
