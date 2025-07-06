@@ -137,6 +137,7 @@ h1{
     color: #ffffff;
     width: 100%;
     height: 60px;
+  
     text-align: center;
     position: absolute;
     bottom: 0;
@@ -160,6 +161,10 @@ h1{
     height: 30px;
 }
 
+#inputColor{
+    position: relative;
+}
+
 #save{
     width: 60px;
     height: 60px;
@@ -179,6 +184,40 @@ h1{
 #delete{
     
 }
+
+
+
+.delete_square {
+  position: relative; /* ツールチップの位置の基準に */
+  cursor: pointer; /* カーソルを当てたときにポインターに */
+}
+
+.delete_sqr {
+  width: 10px;
+  height: 10px;
+  opacity: 0; /* はじめは隠しておく */
+  visibility: hidden; /* はじめは隠しておく */
+  position: absolute; /* 絶対配置 */
+  left: 100%; /* 親に対して中央配置 */
+  transform: translateX(-50%); /* 親に対して中央配置 */
+  bottom: 70%; /* 親要素下からの位置 */
+  display: inline-block;
+  padding: 5px; /* 余白 */
+  white-space: nowrap; /* テキストを折り返さない */
+  font-size: 0.8rem; /* フォントサイズ */
+  background: #bb0c0c; /* 背景色 */
+  color: #ffffff; /* 文字色 */
+  border-radius: 100%; /* 角丸 */
+  transition: 0.3s ease-in; /* アニメーション */
+}
+
+
+
+.delete_square:hover .delete_sqr{
+  opacity: 1;
+  visibility: visible;
+}
+
 
 .tooltip {
   position: relative; /* ツールチップの位置の基準に */

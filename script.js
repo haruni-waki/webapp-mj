@@ -429,10 +429,7 @@ function selectSquare(e,number){
     console.log(e.currentTarget);
     let square = e.currentTarget;
     let  output=document.getElementById("output");
-    output.innerHTML=number;
-    shapes = shapesList[number-1]
-    console.log(shapes,number-1)
-
+ 
     let allSquare = document.getElementsByClassName("square");
     for (let i=0;i<allSquare.length;i++ ){
         allSquare[i].className="square";
