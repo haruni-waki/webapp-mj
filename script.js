@@ -419,7 +419,7 @@ function saveFormation(){
 
     let count = document.getElementsByClassName("square").length;
     item.addEventListener('click',(e) => selectSquare(e,count));
-    shapesList.push(shapes.concat())
+    shapesList.push(JSON.parse(JSON.stringify(shapes)))
 
 }
 
@@ -428,7 +428,8 @@ saveButton.addEventListener('click',saveFormation);
 function selectSquare(e,number){
     console.log(e.currentTarget);
     let square = e.currentTarget;
-    let  output=document.getElementById("output");
+    shapes = shapesList[number-1]
+    console.log(shapes,number-1)
  
     let allSquare = document.getElementsByClassName("square");
     for (let i=0;i<allSquare.length;i++ ){
@@ -442,9 +443,6 @@ function selectSquare(e,number){
     allCircle()
 }
 saveSquare.addEventListener('click',(e) => selectSquare(e,1));
-
-
-
 
 
 Grid();
