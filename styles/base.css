@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New&display=swap');
+
+body{
+    background-color: #000000;
+    color: #ffffff;
+    margin: 0;
+    font-family: "Zen Kaku Gothic New", sans-serif;
+}
+
+header{
+    background-color: #6cd323;
+}
+
+h1{
+    margin: 0;
+    padding: 10px;
+}
+
+main{
+    height: 100%;
+    width: 100%;
+    display: grid;
+    margin: auto;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+
+}
+
+canvas{
+    margin: 40px;
+    background-color: #ffffff;
+}
+
+
+input[type=range]{
+    -webkit-appearance: none;
+    background: none;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+    width: 300px;
+    height: 5px;
+    background: #86ac8d;
+    border: none ;
+    border-radius: 10px;
+}
+
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    border: none;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    background: #6cd323;
+    margin-top: -4px;
+}
+
+input[type=range]:focus {
+    outline: none;
+}
+
+input[type=range]:focus::-webkit-slider-runnable-track {
+    background: #86ac8d;
+    border-radius: 3px;
+
+}
+
+
+
+
